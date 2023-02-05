@@ -10,6 +10,7 @@ public class Player_Control : MonoBehaviour
         public Transform groundCheck;
         public LayerMask groundLayer;
         public Vector3 direction;
+        public GameObject referencePosition;
         // properties
         public float playerSpeed = 5;
         public float jumpForce = 10;
@@ -58,6 +59,7 @@ public class Player_Control : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 properties.direction.y = properties.jumpForce;
+                
             }
         }
         else
