@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player_Control : MonoBehaviour
 {
@@ -14,17 +13,16 @@ public class Player_Control : MonoBehaviour
         // properties
         public float playerSpeed = 5;
         public float jumpForce = 10;
-        public float gravityForce = -9.8f;
+        public float gravityForce = -4.8f;
 
         //Debug stuff
         public bool enableDebug = true;
-
     }
     public Properties properties = new Properties();
 
     void Update()
     {
-        playerMovement();
+         playerMovement();
     }
 
     void playerMovement()

@@ -1152,6 +1152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 337747835}
+  referencePosition: {fileID: 1119641288}
+  player: {fileID: 337747840}
+  teleportDistance: 1.1
 --- !u!1 &1721319331
 GameObject:
   m_ObjectHideFlags: 0
