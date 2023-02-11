@@ -7,7 +7,11 @@ public class Player_Aim : MonoBehaviour
     private Camera mainCam;
     public GameObject referencePosition;
     public Player_Control player;
-    public float teleportDistance = 1.1f;
+    public float teleportDistance = 1.9f; // A bit broken, but it is what it is
+
+    private float _nextUse = 0.15f;
+    private float _nextDelay = 2f;
+
 
     private void Start()
     {
@@ -18,7 +22,7 @@ public class Player_Aim : MonoBehaviour
     {
         playerFlareLookAround();
         playerFollow();
-        Debug.Log(referencePosition.transform.position);
+        //Debug.Log(referencePosition.transform.position);
         
     }
 
@@ -34,7 +38,7 @@ public class Player_Aim : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && Time.time > _nextUse)
         {
             if (referencePosition.transform.rotation.z < 180f && referencePosition.transform.rotation.z > 0f)
             {
@@ -42,12 +46,12 @@ public class Player_Aim : MonoBehaviour
                 player.gameObject.SetActive(false);
                 mouse.z = target.transform.position.z - mainCam.transform.position.z; // setting 0
                 Vector3 getWorldPoints = mainCam.ScreenToWorldPoint(mouse);
-                target.transform.position = getWorldPoints / teleportDistance;
+                target.transform.position = getWorldPoints;
                 player.gameObject.SetActive(true);
             }
-            
+            _nextUse = Time.time + _nextDelay;
         }
-        Debug.DrawLine(target.transform.position, referencePosition.transform.position, Color.blue);
+        //Debug.DrawLine(target.transform.position, referencePosition.transform.position, Color.blue);
     }
 
     void playerFollow()
